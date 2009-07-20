@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://xulmusic/content/xulmusic.css" type="text/css"?>
+
+<dialog id="options-dialog" 
+				xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+				xmlns:html="http://www.w3.org/1999/xhtml"
+				width="500" 
+				height="400" 
+				onload="init()"
+				ondialogaccept="save()"
+				ondialogcancel="cancel()"
+				title="Options"
+				buttons="accept,cancel">
+	<script src="chrome://xulmusic/content/tools.js"/>
+	<script src="chrome://xulmusic/content/options.js"/>
+	<!-- we store all options as hidden labels the setDisplay* functions then change the
+	     set values when changed either onload or from the UI -->
+	<label hidden="true" id="audio-folder" onchange="setDisplayLabelFromLabel(this, 'audio-folder-display')"/>
+	<vbox flex="1">
+		<label value="Audio Folder: "/>
+		<hbox>
+			<textbox id="audio-folder-display" onchange="setDisplayLabelFromLabel(this, 'audio-folder')" flex="1"/>
+			<button label="Browse" oncommand="setAudioFolder()"/>
+		</hbox>
+	</vbox>
+</dialog>

@@ -1,0 +1,53 @@
+/*
+ * "The contents of this file are subject to the Mozilla Public License
+ * Version 1.1 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations
+ * under the License.
+ *
+ * The Original Code is Todd A. Fisher code.
+ *
+ * The Initial Developer of the Original Code is Todd A. Fisher.
+ * Portions created by the Initial Developer are Copyright (C) 2005
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s): 
+ *
+ */
+#include "nsISupports.idl"
+
+interface xmITrack;
+interface nsIFile;
+interface nsIURL;
+
+/* there should only ever be one player per application */
+[scriptable, uuid(2aebcbe8-e7df-4b91-a83a-cbae4d95d602)]
+interface xmIPlayer : nsISupports{
+
+	// load a new track from a url
+	xmITrack newTrack( in nsIURL url );
+
+	// the current track
+	attribute xmITrack track;
+
+	// controls for the track
+	void play();
+	void pause();
+	void stop();
+
+	// volumn controls represent volume between
+	// 0 and 100
+	boolean setVolume( in short value );
+	short getVolume();
+};
+
+%{C++
+#define XM_PLAYER_CONTRACTID "@XulMusic.org;Player;1"
+// 9f8bba8b-e717-4a29-ac4a-fc6f3d9a89f5
+#define XM_PLAYER_CID { 0x9f8bba8b, 0xe717, 0x4a29, \
+  { 0xac, 0x4a, 0xfc, 0x6f, 0x3d, 0x9a, 0x89, 0xf5 } }
+%}

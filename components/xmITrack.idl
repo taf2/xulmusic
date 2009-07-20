@@ -1,0 +1,83 @@
+/*
+ * "The contents of this file are subject to the Mozilla Public License
+ * Version 1.1 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations
+ * under the License.
+ *
+ * The Original Code is Todd A. Fisher code.
+ *
+ * The Initial Developer of the Original Code is Todd A. Fisher.
+ * Portions created by the Initial Developer are Copyright (C) 2005
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s): 
+ *
+ */
+/*
+ * This is the main player interface
+ * it provides an interface designed to be
+ * polled by the GUI.  This way a javascript
+ * usage would look something like:
+ * 
+ * setTimeout( updateTracker, 100 );
+ *
+ * ...
+ *
+ * function updateTracker(){
+ *
+ * var prog = document.getElementById("progress");
+ * 
+ * var percent = ( track.getPosition() / track.getDuration() ) * 100.0;
+ * prog.setAttribute( "value", percent + "%" );
+ *
+ * xM stands for Xul Music
+ */
+
+#include "nsISupports.idl"
+
+interface nsIFile;
+interface nsIURL;
+
+[scriptable, uuid(6d265a0f-593b-4cc5-8031-359bd411b573)]
+interface xmITrack : nsISupports{
+	
+	// return empty strings if information is not present
+	AString getTitle();
+	AString getArtist();
+	AString getURLSpec();
+
+	// set the track position by passing a value in seconds
+	// between 0 and getDuration()
+	void setPosition( in long position );
+	// return the current track time in seconds
+	long getPosition();
+	// return the total time in seconds of the track
+	long getDuration();
+
+	const short STOPPED = 0;
+	const short PAUSED = 1;
+	const short PLAYING = 2;
+	short getState();
+
+	// used by the Player interface to control the track
+	// init needs to do enough to provide valid results
+	// for the scriptable getters above
+	[noscript] void initTrack( in nsIURL url );
+	[noscript] void play();
+	[noscript] void pause();
+	[noscript] void stop();
+	[noscript] void setVolume( in float value );
+	[noscript] float getVolume();
+};
+
+%{C++
+#define XM_TRACK_CONTRACTID "@XulMusic.org;Track;1"
+// d96862f9-67bc-4f1f-9c2b-e490695f5dec
+#define XM_TRACK_CID { 0xd96862f9, 0x67bc, 0x4f1f, \
+  { 0x9c, 0x2b, 0xe4, 0x90, 0x69, 0x5f, 0x5d, 0xec } }
+%}

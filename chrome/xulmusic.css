@@ -1,0 +1,81 @@
+/*
+ * "The contents of this file are subject to the Mozilla Public License
+ * Version 1.1 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations
+ * under the License.
+ *
+ * The Original Code is Todd A. Fisher code.
+ *
+ * The Initial Developer of the Original Code is Todd A. Fisher.
+ * Portions created by the Initial Developer are Copyright (C) 2005
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s): 
+ *
+ */
+
+
+scrollbar[id="curtrack-position"] > scrollbarbutton{
+	display:none;
+}
+scrollbar[id="volume-scroll"] > scrollbarbutton{
+	display:none;
+}
+
+#curtrack-position{
+	margin-left:4px;
+	margin-right:4px;
+	margin-bottom:5px;
+}
+/*
+#controls{
+	margin-left:5px;
+	margin-right:5px;
+}*/
+.button-control{
+	max-width:36px;
+	max-height:36px;
+	width:36px;
+	height:36px;
+	min-width:36px;
+	min-height:36px;
+	padding:0px;
+	font-size:smaller;
+	-moz-box-pack:center;
+}
+#track-play-pause[mode="play"]{
+	list-style-image:url("chrome://xulmusic/content/play.png");
+}
+#track-play-pause[mode="pause"]{
+	list-style-image:url("chrome://xulmusic/content/pause.png");
+}
+#volume-button{
+	list-style-image:url("chrome://xulmusic/content/volume.png");
+}
+#track-stop{
+	list-style-image:url("chrome://xulmusic/content/stop.png");
+}
+#track-next{
+	list-style-image:url("chrome://xulmusic/content/next.png");
+}
+#track-previous{
+	list-style-image:url("chrome://xulmusic/content/previous.png");
+}
+#playlist-show-hide{
+	list-style-image:url("chrome://xulmusic/content/playlist.png");
+}
+#add-podcast{
+	list-style-image:url("chrome://xulmusic/content/podcast.png");
+	margin-left:3px;
+}
+#add-podcast:hover{
+	list-style-image:url("chrome://xulmusic/content/podcast-hover.png");
+}
+#add-podcast:active{
+	list-style-image:url("chrome://xulmusic/content/podcast-active.png");
+}

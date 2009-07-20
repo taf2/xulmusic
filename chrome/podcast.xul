@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://xulmusic/content/xulmusic.css" type="text/css"?>
+
+<dialog id="podcast-dialog" 
+				xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+				width="500" 
+				height="200" 
+				title="Add PodCast"
+				ondialogaccept="savecast()"
+				buttons="accept,cancel">
+	<script>
+	<![CDATA[
+		function savecast(){
+			var podcastURL = window.arguments[0];
+			podcastURL.value = document.getElementById( "podcast-url" ).value;
+		}
+	]]>
+	</script>
+	<vbox flex="1">
+		<hbox>
+			<label value="URL:"/>
+			<textbox id="podcast-url" flex="1"/>
+		</hbox>
+	</vbox>
+</dialog>
